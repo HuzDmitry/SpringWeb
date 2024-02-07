@@ -21,11 +21,20 @@ public class BookController {
         this.service = service;
     }
 
+    /**
+     * Получение списка всех книг
+     * @return
+     */
     @GetMapping
     public List<Book> findAll(){
         return service.findAll();
     }
 
+    /**
+     * Получение книги по id
+     * @param id
+     * @return
+     */
     @GetMapping("/{id}")
     public ResponseEntity<Book>findById(@PathVariable Long id){
         Optional<Book>book = service.findById(id);
@@ -33,17 +42,31 @@ public class BookController {
                 .orElseGet(()->ResponseEntity.notFound().build());
     }
 
+    /**
+     * Добавление книги в репозиторий
+     * @param book
+     * @return
+     */
     @PostMapping
     public Book save(@RequestBody Book book){
         return service.save(book);
     }
 
+    /**
+     * Обновление параметров в книге по id
+     * @param book
+     * @param id
+     * @return
+     */
     @PutMapping("/{id}")
     public Book update(@RequestBody Book book,@PathVariable Long id){
-        book.setId(id);
-        return service.save(book);
+        return service.updateBook(book, id);
     }
 
+    /**
+     * удаление книги по id
+     * @param id
+     */
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable Long id){
         service.deleteById(id);
