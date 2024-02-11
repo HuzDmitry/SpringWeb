@@ -2,6 +2,8 @@ package by.SpringBoot.model;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.boot.context.properties.bind.DefaultValue;
+
 import java.sql.Timestamp;
 
 @Entity
@@ -10,8 +12,8 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false)
-    private String name;
+    @Column( nullable = false)
+    private String username;
 
     @Column(nullable = false)
     private String surname;
@@ -22,6 +24,10 @@ public class Student {
     @CreationTimestamp
     private Timestamp registrationDate;
 
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     public Integer getId() {
         return id;
@@ -32,11 +38,11 @@ public class Student {
     }
 
     public String getName() {
-        return name;
+        return username;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.username = name;
     }
 
     public String getSurname() {
@@ -63,4 +69,19 @@ public class Student {
         this.registrationDate = registrationDate;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
 }
