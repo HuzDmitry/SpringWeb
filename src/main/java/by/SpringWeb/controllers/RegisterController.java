@@ -5,16 +5,12 @@ import by.SpringWeb.services.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
-@RequestMapping("/reg")
+@RestController
 public class RegisterController {
 
     private final RegisterService registerService;
@@ -28,49 +24,43 @@ public class RegisterController {
      * Простое сообщение
      * @return
      */
-    @GetMapping(value = "/api")
-    public ResponseEntity<String> getMessage(){
-        return new ResponseEntity<>("Yello",HttpStatus.OK);
+    @GetMapping("/login")
+    public String getMessage(){
+        return registerService.getMessage();
     }
 
     /**
      * Добавление пользователя в список. POST запрос с параметрами.
-     * @param name
-     * @param age
-     * @param email
-     * @return
+     *
      */
-    @RequestMapping(value = "/add",method = RequestMethod.POST)
-    public ResponseEntity<User> addUser(@RequestParam String name, @RequestParam int age, @RequestParam String email){
+    @PostMapping("/api/add")
+    public void addUser(@RequestParam String name, @RequestParam int age, @RequestParam String email){
         registerService.addUser(name, age, email);
-        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     /**
      * удаление пользователя по номеру
      * @param id
-     * @return
      */
-    @RequestMapping(method = RequestMethod.DELETE)
-    public ResponseEntity<User> delUser(@RequestParam int id){
-        return new ResponseEntity<>(registerService.delUser(id), HttpStatus.OK);
+    @DeleteMapping("/api/{id}")
+    public void delUser(@PathVariable int id){
+        registerService.delUser(id);
     }
 
     /**
      * Получение пользователя по номеру
      * @param id
-     * @return
      */
-    @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<User>getUser(@RequestParam int id){
-        return new ResponseEntity<>(registerService.getUser(id), HttpStatus.OK);
+    @GetMapping("/api/{id}")
+    public User getUser(@PathVariable int id){
+        return registerService.getUser(id);
     }
 
     /**
      * Сортировка пользователей по возрасту
      * @return
      */
-    @RequestMapping(value = "/sort", method = RequestMethod.GET)
+    @GetMapping("/user/sort")
     public ResponseEntity<List<User>>sortByAgeUser(){
         return new ResponseEntity<>(registerService.sortByAgeUser(), HttpStatus.OK);
     }
@@ -80,18 +70,22 @@ public class RegisterController {
      * @param age
      * @return
      */
-    @RequestMapping(value = "/filter", method = RequestMethod.GET)
-    public ResponseEntity<List<User>>filterByAgeUser(@RequestParam int age){
-        return new ResponseEntity<>(registerService.filterUsersByAge(age), HttpStatus.OK);
+    @GetMapping("/user/filter/{age}")
+    public List<User>filterByAgeUser(@PathVariable int age){
+        return registerService.filterUsersByAge(age);
     }
 
     /**
      * вычисление среднего значения возраста пользователей
      * @return
      */
-    @RequestMapping(value = "/calc", method = RequestMethod.GET)
-    public ResponseEntity<Double>calculateByAgeUser(){
-        return new ResponseEntity<>(registerService.calculateAverageAge(), HttpStatus.OK);
+    @GetMapping("/user/calc")
+    public Double calculateByAgeUser(){
+        return registerService.calculateAverageAge();
+    }
+    @GetMapping("/api")
+    public List<User> getAll(){
+        return registerService.getUsersAll();
     }
 
 }

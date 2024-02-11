@@ -2,15 +2,18 @@ package by.SpringWeb.models;
 
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Component
 public class UserDb{
+
  private final List<User> userList;
 
     public UserDb() {
-        this.userList = new ArrayList<>();
+        this.userList = Arrays.asList(new User("Dima", 20, "www@mail.com"),
+                new User("Ira", 23, "www@mail.com"),
+                new User("Kola", 29,"www@mail.com"),
+                new User("Natasha", 31 ,"www@gmail.com"));
     }
 
     public void saveUser(User user){

@@ -7,12 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-//Создать сервис "RegistrationService",
-// который принимает на вход данные о пользователе (имя, возраст, email),
-// создает пользователя с помощью UserService, затем использует DataProcessingService для
-// добавления пользователя в список и выполнения операций над этим списком.
-// После выполнения каждой операции, использовать NotificationService для вывода информации
-// о выполненной операции.
+
 @Service
 public class RegisterService {
 
@@ -35,9 +30,12 @@ public class RegisterService {
      * @param email
      */
     public void addUser(String name, int age, String email){
-        User us = userService.createUser(name, age, email);
-        userDb.saveUser(us);
-        notificationService.notifyUser(us);
+        User user = new User();
+        user.setName(name);
+        user.setAge(age);
+        user.setEmail(email);
+        userDb.saveUser(user);
+        notificationService.notifyUser(user);
     }
 
     /**
@@ -88,5 +86,12 @@ public class RegisterService {
     public double calculateAverageAge() {
         notificationService.calculateUserByAge();
         return dataProcessingService.calculateAverageAge(userDb.getUsers());
+    }
+
+    public List<User>getUsersAll(){
+        return userDb.getUsers();
+    }
+    public String getMessage(){
+        return dataProcessingService.getGreeting();
     }
 }

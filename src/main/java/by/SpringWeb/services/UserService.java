@@ -13,14 +13,7 @@ public class UserService {
         this.notificationService = notificationService;
     }
 
-    public User createUser(String name, int age, String email) {
-        User user = new User();
-        user.setName(name);
-        user.setAge(age);
-        user.setEmail(email);
-
-        notificationService.notifyUser(user);
-
-        return user;
+    public String getMessage() {
+        return "Hello";
     }
 }
