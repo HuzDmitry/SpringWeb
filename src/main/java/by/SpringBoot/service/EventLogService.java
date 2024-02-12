@@ -1,5 +1,6 @@
 package by.SpringBoot.service;
 
+import by.SpringBoot.annotation.ToLog;
 import by.SpringBoot.model.EventLog;
 import by.SpringBoot.model.EventLogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,7 @@ public class EventLogService {
      * @param id
      * @return
      */
+    @ToLog
     public Optional<EventLog>findById(Integer id){
         return repository.findById(id);
     }
@@ -47,6 +49,7 @@ public class EventLogService {
      * получение всех событий
      * @return
      */
+    @ToLog
     public List<EventLog> findAll(){
         return repository.findAll();
     }

@@ -1,13 +1,10 @@
 package by.SpringBoot.service;
 
 
+import by.SpringBoot.annotation.ToLog;
 import by.SpringBoot.model.Student;
 import by.SpringBoot.model.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -29,6 +26,7 @@ public class StudenService {
      * @param id
      * @return
      */
+    @ToLog
     public Optional<Student> findById(Integer id){
         return repository.findById(id);
     }
@@ -37,6 +35,7 @@ public class StudenService {
      * Получение списка всех учеников
      * @return
      */
+    @ToLog
     public List<Student>getStudentAll(){
         return repository.findAll();
     }
