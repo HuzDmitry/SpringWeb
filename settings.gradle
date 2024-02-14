@@ -1,1 +1,8 @@
 rootProject.name = 'SpringWeb'
+
+
+includeBuild 'CloudServer'
+includeBuild 'CloudClient1'
+includeBuild 'CloudClient2'
+includeBuild 'CloudClient3'
+includeBuild 'CloudGateway'
