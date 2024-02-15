@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CloudgatewayApplication {
+public class CloudGatewayApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CloudgatewayApplication.class, args);
+		SpringApplication.run(CloudGatewayApplication.class, args);
 	}
 
 }

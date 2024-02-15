@@ -2,12 +2,14 @@ package by.CloudClient;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
-public class CloudClientApplication {
+@EnableDiscoveryClient
+public class CloudBuyApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CloudClientApplication.class, args);
+		SpringApplication.run(CloudBuyApplication.class, args);
 	}
 
 }

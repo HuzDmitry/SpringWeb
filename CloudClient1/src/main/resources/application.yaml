@@ -2,7 +2,7 @@ server:
   port: 0
 spring:
   application:
-    name: client1
+    name: product
   cloud:
     discovery:
       enabled: true

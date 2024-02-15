@@ -6,14 +6,18 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: taskservice
-          uri: lb://client1
+        - id: product
+          uri: lb://product
           predicates:
-            - Path=/**
-        - id: service
-          uri: lb://client3
+            - Path=/product/**
+        - id: buy
+          uri: lb://buy
           predicates:
-            - Path=/**
+            - Path=/buy/**
+        - id: reviews
+          uri: lb://reviews
+          predicates:
+            - Path=/review/**
 
 
      # discovery:
