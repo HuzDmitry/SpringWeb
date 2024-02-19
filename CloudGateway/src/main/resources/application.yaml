@@ -30,3 +30,20 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      group:
+        custom:
+          include: diskSpace,ping
+          show-components: always
+          show-details: always
+          status:
+            http-mapping:
+              up: 207
+    prometheus:
+      enabled: true
