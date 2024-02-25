@@ -1,34 +1,6 @@
-plugins {
-	id 'java'
-	id 'org.springframework.boot' version '3.2.2'
-	id 'io.spring.dependency-management' version '1.1.4'
-}
 
 group = 'by'
 version = '0.0.1-SNAPSHOT'
 
-java {
-	sourceCompatibility = '17'
-}
 
-repositories {
-	mavenCentral()
-}
 
-dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
-	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	implementation group: 'org.postgresql', name: 'postgresql', version: '42.7.1'
-	implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.3.0'
-//	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-aop', version: '3.2.2'
-
-}
-
-tasks.named('test') {
-	useJUnitPlatform()
-}
