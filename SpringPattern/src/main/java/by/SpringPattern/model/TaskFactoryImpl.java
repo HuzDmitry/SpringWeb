@@ -5,8 +5,11 @@ import org.springframework.stereotype.Component;
 import java.util.Random;
 @Component
 public class TaskFactoryImpl implements TaskFactory{
+
     private final static  String[] toDo = {"TO_DO", "PLAN", "DELEGATE", "POSTPONE"};
+
     private final String[] name = {"Сегодня", "Завтра", "На этой неделе","В этом месяце","в это году"};
+
     private final String[] content = {"Потанцевать", "Протестировать новую игру",
             "Посмотреть все серии","Сделать много селфи,","Перемерить всю актуальную одежду",
             "Передвинуть мебель","Сделать планку.","Открыть для себя новую музыку","Рифмовать всё, что видите вокруг",
@@ -19,6 +22,7 @@ public class TaskFactoryImpl implements TaskFactory{
             "Обновить и расширить своё резюме","Обновить профиль на сайте знакомств."," Разбить мини-огород на подоконнике",
             "Сделать уборку.","Составить список плюсов и минусов задачи,","Собрать тревожный чемоданчик",
             "Научиться завязывать галстук ","Вспомнить старого друга","Поиграть с друзьями или детьми в настольные игры."};
+
     private final Random random = new Random();
 
     @Override

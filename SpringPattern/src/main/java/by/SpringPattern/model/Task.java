@@ -48,4 +48,14 @@ public class Task {
     public void setToDo(String toDo) {
         this.toDo = toDo;
     }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", content='" + content + '\'' +
+                ", toDo='" + toDo + '\'' +
+                '}';
+    }
 }

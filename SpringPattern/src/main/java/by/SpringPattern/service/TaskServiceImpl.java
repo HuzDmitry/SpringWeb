@@ -1,10 +1,11 @@
 package by.SpringPattern.service;
 
 import by.SpringPattern.model.Task;
+import by.SpringPattern.model.TaskEvent;
 import by.SpringPattern.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -12,11 +13,14 @@ import java.util.Random;
 @Service
 public class TaskServiceImpl implements TaskServiceFacade{
 
+    private String message;
+
     private final TaskRepository repository;
 
     private final GenTaskService genTaskService;
 
     private static int taskCounts;
+
     @Autowired
     public TaskServiceImpl(TaskRepository repository, GenTaskService genTaskService) {
         this.repository = repository;
@@ -55,6 +59,18 @@ public class TaskServiceImpl implements TaskServiceFacade{
 
     @Override
     public String GetMessageTask() {
-        return "изменились задачи количество и название.";
+        return "изменились задачи: "+message;
+    }
+
+    @EventListener(TaskEvent.class)
+    public void listener(TaskEvent event){
+        List<Task>before = event.getBeforeTask();
+        StringBuilder builder = new StringBuilder();
+        builder.append("в количестве: ").append(before.size());
+
+        for (Task task : before) {
+            builder.append(" \n было: ").append(task);
+        }
+        message = builder.toString();
     }
 }
